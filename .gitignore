@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual env
+venv/
+.env
+
+# Streamlit
+.streamlit/
+
+# Model cache
+models/
+*.bin
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

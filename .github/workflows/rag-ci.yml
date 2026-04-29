@@ -1,0 +1,33 @@
+name: RAG CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-rag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build app image
+        run: docker build -t rag-app ./app
+
+      - name: Start containers
+        run: docker compose up -d
+
+      - name: Wait ollama
+        run: sleep 15
+
+      - name: Pull lightweight model
+        run: docker exec $(docker ps -qf "ancestor=ollama/ollama") ollama pull phi
+
+      - name: Check ollama response
+        run: |
+          curl http://localhost:11434/api/generate \
+          -d '{"model":"phi","prompt":"hello","stream":false}'
+
+      - name: Check Streamlit
+        run: curl http://localhost:8501

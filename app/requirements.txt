@@ -1,0 +1,8 @@
+streamlit
+faiss-cpu
+sentence-transformers
+# は重いので、scikit-learnでOK
+# scikit-learn
+pypdf
+requests
+numpy

@@ -1,0 +1,23 @@
+# docker compose v2は自動判定なので不要
+# version: "3.9"
+
+services:
+  rag-app:
+    # build: ./app
+    image: kazumayoshida/rag-app:v1
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./app/mistral.py:/app/mistral.py
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  ollama_data:
