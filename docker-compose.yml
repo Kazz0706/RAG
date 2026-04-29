@@ -3,8 +3,8 @@
 
 services:
   rag-app:
-    # build: ./app
-    image: kazumayoshida/rag-app:v1
+    build: ./app
+    # image: kazumayoshida/rag-app:v1
     ports:
       - "8501:8501"
     volumes:

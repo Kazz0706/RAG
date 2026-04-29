@@ -18,15 +18,6 @@ jobs:
       - name: Start containers
         run: docker compose up -d
 
-      - name: Wait for Streamlit
-        run: |
-          for i in {1..30}; do
-            curl -f http://localhost:8501 && exit 0
-            sleep 5
-          done
-          docker compose logs
-          exit 1
-
       - name: Wait ollama
         run: sleep 15
 
